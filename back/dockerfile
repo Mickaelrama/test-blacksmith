@@ -1,0 +1,19 @@
+
+FROM node:14.17.2
+
+RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app/back
+
+WORKDIR /usr/src/app/back
+
+COPY package*.json ./
+RUN npm update
+RUN npm install 
+
+COPY . .
+
+ENV PORT=4000
+
+EXPOSE 4000
+
+CMD [ "npm", "start"]
