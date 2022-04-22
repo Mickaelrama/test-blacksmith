@@ -184,12 +184,16 @@ const UserPage = () => {
                     {row.role === "ADMIN" ? "Administrateur" : "Public"}
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={handleClickEdit(row)}>
-                      <Edit />
-                    </IconButton>
-                    <IconButton onClick={handleClickDelete(row.id)}>
-                      <Delete />
-                    </IconButton>
+                    {row.username !== "Admin" && (
+                      <>
+                        <IconButton onClick={handleClickEdit(row)}>
+                          <Edit />
+                        </IconButton>
+                        <IconButton onClick={handleClickDelete(row.id)}>
+                          <Delete />
+                        </IconButton>
+                      </>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}
