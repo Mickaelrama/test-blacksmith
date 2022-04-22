@@ -1,6 +1,4 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-// import DurationPicker from "react-duration-picker";
-// import format from "format-duration";
 import {
   Button,
   DialogTitle,
@@ -39,6 +37,12 @@ const ParkinForm = ({ mode, open, onClose, value, onSave }) => {
     setFormData((state) => ({ id: value.id, etage: value.etage }));
   }, [value]);
 
+  useEffect(() => {
+    if (mode === "new") {
+      setFormData({ id: null, etage: 0 });
+    }
+  }, [mode]);
+
   return (
     <Dialog maxWidth="sm" fullWidth open={open} onClose={onClose}>
       <DialogTitle>
@@ -58,15 +62,6 @@ const ParkinForm = ({ mode, open, onClose, value, onSave }) => {
                 onChange={handleChangeInput}
               />
             </Box>
-            {/* <Box className="form-control">
-              <label>Temps d'occupation</label>
-              <DurationPicker
-                initialDuration={durationToDurationPikerValue(
-                  value.tempsOccupation
-                )}
-                onChange={handleChangeDuration}
-              />
-            </Box> */}
           </Box>
         </DialogContent>
         <DialogActions>

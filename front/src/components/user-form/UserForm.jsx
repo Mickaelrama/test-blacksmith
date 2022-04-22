@@ -49,6 +49,17 @@ const UserForm = ({ mode, open, onClose, value, onSave }) => {
     setFormData((state) => ({ ...state, ...value }));
   }, [value]);
 
+  useEffect(() => {
+    if (mode === "new")
+      setFormData({
+        id: null,
+        username: "",
+        email: "",
+        password: "",
+        role: null,
+      });
+  }, [mode]);
+
   return (
     <Dialog maxWidth="sm" fullWidth open={open} onClose={onClose}>
       <DialogTitle>

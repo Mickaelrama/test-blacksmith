@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { useRoutes, Navigate } from "react-router-dom";
 import React from "react";
 import Dashboard from "../view/dashboard";
 import AuthGuard from "../components/auth-guard/AuthGuard";
@@ -13,6 +13,10 @@ const RouterView = () => {
       path: "/",
       element: <Dashboard />,
       children: [
+        {
+          path: "",
+          element: <Navigate to="/parking" />,
+        },
         {
           path: "user",
           element: (

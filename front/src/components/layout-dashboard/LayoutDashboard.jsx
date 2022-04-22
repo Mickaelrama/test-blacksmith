@@ -10,7 +10,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
-import { Person, Menu as MenuIcon, LocalParking } from "@mui/icons-material";
+import {
+  Person,
+  Menu as MenuIcon,
+  LocalParking,
+  PowerSettingsNew,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 250;
@@ -48,9 +53,15 @@ const Menu = () => {
 
 const LayoutDashboard = ({ window, children }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((state) => !state);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
   };
 
   const container =
@@ -66,16 +77,28 @@ const LayoutDashboard = ({ window, children }) => {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+          <Box>
+            <IconButton onClick={handleLogout}>
+              <PowerSettingsNew />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box
